@@ -353,6 +353,7 @@ final class CodexService {
     var isConnecting = false
     var isInitialized = false
     var isLoadingThreads = false
+    var isAppReviewDemoMode = false
     // Tracks the non-blocking bootstrap that hydrates chats/models after the socket is ready.
     var isBootstrappingConnectionSync = false
     var currentOutput = ""

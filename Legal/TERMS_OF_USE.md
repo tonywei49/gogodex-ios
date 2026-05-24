@@ -118,4 +118,4 @@ If any provision of these Terms is found unenforceable, the remaining provisions
 If you have questions about these Terms, you can reach us at:
 
 - **Email:** tonywei49@gmail.com
-- **GitHub:** [github.com/tonywei49/cod-mobile](https://github.com/tonywei49/cod-mobile)
+- **Legal notices:** [codex.gotradetalk.com/terms](https://codex.gotradetalk.com/terms)

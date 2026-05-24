@@ -11,6 +11,7 @@ import UIKit
 struct QRScannerView: View {
     let onBack: (() -> Void)?
     let onScan: (CodexPairingQRPayload) -> Void
+    let onReviewDemo: () -> Void
 
     @State private var scannerError: String?
     @State private var bridgeUpdatePrompt: CodexBridgeUpdatePrompt?
@@ -23,10 +24,12 @@ struct QRScannerView: View {
         initialHasCameraPermission: Bool = false,
         initialIsCheckingPermission: Bool = true,
         onBack: (() -> Void)? = nil,
-        onScan: @escaping (CodexPairingQRPayload) -> Void
+        onScan: @escaping (CodexPairingQRPayload) -> Void,
+        onReviewDemo: @escaping () -> Void = {}
     ) {
         self.onBack = onBack
         self.onScan = onScan
+        self.onReviewDemo = onReviewDemo
         _bridgeUpdatePrompt = State(initialValue: initialBridgeUpdatePrompt)
         _hasCameraPermission = State(initialValue: initialHasCameraPermission)
         _isCheckingPermission = State(initialValue: initialIsCheckingPermission)
@@ -265,6 +268,8 @@ struct QRScannerView: View {
         switch validatePairingQRCode(code) {
         case .success(let payload):
             onScan(payload)
+        case .reviewDemo:
+            onReviewDemo()
         case .shortCode:
             scannerError = "Use Pair with Code from the previous screen."
             resetScanLock()

@@ -13,6 +13,7 @@ const { createThreadRolloutActivityWatcher } = require("./rollout-watch");
 const DEFAULT_BUNDLE_ID = "com.openai.codex";
 const DEFAULT_APP_PATH = "/Applications/Codex.app";
 const DEFAULT_DEBOUNCE_MS = 1200;
+const DEFAULT_PAIRING_TTL_MS = 5 * 60 * 1000;
 const DEFAULT_FALLBACK_NEW_THREAD_MS = 2_000;
 const DEFAULT_MID_RUN_REFRESH_THROTTLE_MS = 3_000;
 const DEFAULT_ROLLOUT_LOOKUP_TIMEOUT_MS = 5_000;
@@ -585,10 +586,20 @@ function readBridgeConfig({
   const persistedKeepMacAwakeEnabled = typeof daemonConfig.keepMacAwakeEnabled === "boolean"
     ? daemonConfig.keepMacAwakeEnabled
     : null;
+  const persistedPairingTTLms = parseIntegerEnv(daemonConfig.pairingTTLms, DEFAULT_PAIRING_TTL_MS);
+  const pairingTTLms = parseIntegerEnv(
+    readFirstDefinedEnv(
+      ["GOGODEX_PAIRING_TTL_MS", "REMODEX_PAIRING_TTL_MS", "PHODEX_PAIRING_TTL_MS"],
+      String(persistedPairingTTLms),
+      env
+    ),
+    DEFAULT_PAIRING_TTL_MS
+  );
   // Desktop refresh is opt-in for now because Codex.app still lacks true live updates.
   const defaultRefreshEnabled = false;
   return {
     relayUrl,
+    pairingTTLms,
     pushServiceUrl: readFirstDefinedEnv(
       ["REMODEX_PUSH_SERVICE_URL"],
       defaultPushServiceUrl || persistedPushServiceUrl,

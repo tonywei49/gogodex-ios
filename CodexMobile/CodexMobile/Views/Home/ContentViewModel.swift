@@ -66,6 +66,11 @@ final class ContentViewModel {
         }
     }
 
+    func connectToAppReviewDemo(codex: CodexService) async {
+        await stopAutoReconnectForManualScan(codex: codex)
+        codex.startAppReviewDemoSession()
+    }
+
     // Connects or disconnects the relay.
     func toggleConnection(codex: CodexService) async {
         if codex.isConnected {

@@ -9,6 +9,7 @@ import Foundation
 enum QRScannerPairingValidationResult {
     case success(CodexPairingQRPayload)
     case shortCode(String)
+    case reviewDemo
     case scanError(String)
     case bridgeUpdateRequired(CodexBridgeUpdatePrompt)
 }
@@ -20,6 +21,10 @@ private let qrScannerShortCodePattern = "^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{8,1
 // Distinguishes a usable pairing QR from stale bridge payloads and generic camera mis-scans.
 func validatePairingQRCode(_ code: String, now: Date = Date()) -> QRScannerPairingValidationResult {
     let trimmedCode = code.trimmingCharacters(in: .whitespacesAndNewlines)
+    if CodexAppReviewDemo.isReviewDemoPayload(trimmedCode) {
+        return .reviewDemo
+    }
+
     let normalizedShortCode = trimmedCode
         .uppercased()
         .replacingOccurrences(of: "-", with: "")

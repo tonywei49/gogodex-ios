@@ -45,12 +45,12 @@ enum AppEnvironment {
     }
 
     // Legal links shown in the paywall footer and Settings.
-    // Keep these pointed at a public source-of-truth until the website serves dedicated legal routes.
+    // Keep these pointed at the public website so the mobile app does not expose a source repository.
     static let privacyPolicyURL = URL(
-        string: "https://github.com/tonywei49/cod-mobile/blob/main/Legal/PRIVACY_POLICY.md"
+        string: "https://codex.gotradetalk.com/privacy"
     )!
     static let termsOfUseURL = URL(
-        string: "https://github.com/tonywei49/cod-mobile/blob/main/Legal/TERMS_OF_USE.md"
+        string: "https://codex.gotradetalk.com/terms"
     )!
 
     // Powers in-app feedback actions so every entry point targets the same inbox.

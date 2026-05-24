@@ -70,6 +70,25 @@ test("serves public App Store legal and support pages without exposing the repo"
   }
 });
 
+test("serves App Review demo page and configured QR image", async () => {
+  const env = {};
+  const pageResponse = await worker.fetch(new Request("https://codex.gotradetalk.com/review"), env);
+  const pageBody = await pageResponse.text();
+  const qrResponse = await worker.fetch(new Request("https://codex.gotradetalk.com/review/gogodex-demo-qr.png"), env);
+  const qrBytes = new Uint8Array(await qrResponse.arrayBuffer());
+
+  assert.equal(pageResponse.status, 200);
+  assert.match(pageBody, /REVIEWDEMO/);
+  assert.match(pageBody, /isolated in-app demo/i);
+  assert.match(pageBody, /gogodex-demo-qr\.png/);
+  assert.equal(qrResponse.status, 200);
+  assert.equal(qrResponse.headers.get("content-type"), "image/png");
+  assert.equal(qrBytes[0], 0x89);
+  assert.equal(qrBytes[1], 0x50);
+  assert.equal(qrBytes[2], 0x4e);
+  assert.equal(qrBytes[3], 0x47);
+});
+
 test("redirects root to the support page", async () => {
   const response = await worker.fetch(new Request("https://codex.gotradetalk.com/"), {});
 

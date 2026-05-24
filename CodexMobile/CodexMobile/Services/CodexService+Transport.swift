@@ -180,6 +180,10 @@ extension CodexService {
     }
 
     func sendMessage(_ message: RPCMessage) async throws {
+        if isAppReviewDemoMode {
+            return
+        }
+
         let payload = try encoder.encode(message)
         guard let plaintext = String(data: payload, encoding: .utf8) else {
             throw CodexServiceError.invalidResponse("Unable to encode outgoing JSON-RPC payload")

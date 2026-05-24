@@ -61,6 +61,28 @@ test("secure transport rejects plaintext JSON-RPC before the secure handshake", 
   assert.equal(controlMessages[0]?.code, "update_required");
 });
 
+test("secure transport honors a custom pairing TTL", () => {
+  const { privateKey, publicKey } = generateKeyPairSync("ed25519");
+  const privateJwk = privateKey.export({ format: "jwk" });
+  const publicJwk = publicKey.export({ format: "jwk" });
+  const nowBefore = Date.now();
+  const secureTransport = createBridgeSecureTransport({
+    sessionId: "session-review",
+    relayUrl: "wss://relay.example/relay",
+    pairingTTLms: 14 * 24 * 60 * 60 * 1000,
+    deviceState: {
+      macDeviceId: "mac-review",
+      macIdentityPrivateKey: base64UrlToBase64(privateJwk.d),
+      macIdentityPublicKey: base64UrlToBase64(publicJwk.x),
+      trustedPhones: {},
+    },
+  });
+
+  const payload = secureTransport.createPairingPayload();
+  assert.ok(payload.expiresAt >= nowBefore + 14 * 24 * 60 * 60 * 1000);
+  assert.ok(payload.expiresAt <= Date.now() + 14 * 24 * 60 * 60 * 1000);
+});
+
 test("secure transport round-trips encrypted payloads after a trusted reconnect handshake", () => {
   const macIdentity = createOkpKeyPair("ed25519");
   const phoneIdentity = createOkpKeyPair("ed25519");

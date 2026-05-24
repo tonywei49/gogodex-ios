@@ -393,7 +393,7 @@ struct AboutRemodexView: View {
 
     @ViewBuilder private var footer: some View {
         VStack(spacing: 10) {
-            Text("ISC License")
+            Text("Apache License 2.0")
                 .font(AppFont.caption())
                 .foregroundStyle(.tertiary)
         }

@@ -392,7 +392,7 @@ private struct SettingsSubscriptionCard: View {
             }
 
             if AppEnvironment.isPrivateTestFlightBuild {
-                Text("This TestFlight build is free for internal testing. Subscriptions and in-app purchases are disabled.")
+                Text("This version is free. Subscriptions and in-app purchases are disabled.")
                     .font(AppFont.caption())
                     .foregroundStyle(.secondary)
             } else if subscriptions.hasProAccess {
@@ -453,7 +453,7 @@ private struct SettingsSubscriptionCard: View {
 
     private var subscriptionStatusText: String {
         if AppEnvironment.isPrivateTestFlightBuild {
-            return "Free TestFlight"
+            return "Free"
         }
         return subscriptions.hasProAccess ? "Active" : "Free"
     }

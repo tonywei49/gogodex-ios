@@ -20,9 +20,9 @@ final class QRScannerPairingValidatorTests: XCTestCase {
             return XCTFail("Expected a bridge update prompt for mismatched QR versions.")
         }
 
-        XCTAssertEqual(prompt.title, "Update Remodex on your Mac before scanning")
+        XCTAssertEqual(prompt.title, "Update Gogodex on your computer before scanning")
         XCTAssertEqual(prompt.command, "npm install -g gogodex@latest")
-        XCTAssertTrue(prompt.message.contains("different Remodex npm version"))
+        XCTAssertTrue(prompt.message.contains("different Gogodex npm version"))
     }
 
     func testLegacyBridgePayloadRequiresBridgeUpdateBeforeScanning() {
@@ -35,7 +35,15 @@ final class QRScannerPairingValidatorTests: XCTestCase {
         }
 
         XCTAssertEqual(prompt.command, "npm install -g gogodex@latest")
-        XCTAssertTrue(prompt.message.contains("older Remodex bridge"))
+        XCTAssertTrue(prompt.message.contains("older Gogodex bridge"))
+    }
+
+    func testAppReviewDemoPayloadReturnsReviewDemo() {
+        let result = validatePairingQRCode(CodexAppReviewDemo.qrPayload)
+
+        guard case .reviewDemo = result else {
+            return XCTFail("Expected the App Review QR to enter local demo mode.")
+        }
     }
 
     func testValidPayloadReturnsSuccess() {
@@ -102,7 +110,7 @@ final class QRScannerPairingValidatorTests: XCTestCase {
             return XCTFail("Expected an expiry error.")
         }
 
-        XCTAssertEqual(message, "This pairing code has expired. Generate a new one from the Mac bridge.")
+        XCTAssertEqual(message, "This pairing code has expired. Generate a new one from the computer bridge.")
     }
 
     private func pairingQRCode(

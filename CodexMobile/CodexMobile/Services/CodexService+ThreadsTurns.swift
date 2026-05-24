@@ -194,6 +194,11 @@ extension CodexService {
             throw CodexServiceError.invalidInput("User input and images cannot both be empty")
         }
 
+        if isAppReviewDemoMode {
+            try await startAppReviewDemoTurn(userInput: trimmedInput, threadId: threadId)
+            return
+        }
+
         let initialThreadId = try await resolveThreadID(threadId)
         let effectiveCollaborationMode = collaborationModeForOutgoingTurn(
             threadId: initialThreadId,

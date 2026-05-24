@@ -159,4 +159,4 @@ We may update this Data Protection Notice from time to time. When we do, we will
 If you have questions about this Data Protection Notice or want to exercise your privacy rights, you can reach us at:
 
 - **Email:** tonywei49@gmail.com
-- **GitHub:** [github.com/tonywei49/cod-mobile](https://github.com/tonywei49/cod-mobile)
+- **Legal notices:** [codex.gotradetalk.com/privacy](https://codex.gotradetalk.com/privacy)

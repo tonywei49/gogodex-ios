@@ -48,7 +48,6 @@
 "Forget Pair" = "페어링 삭제";
 "Free" = "무료";
 "French" = "프랑스어";
-"Free TestFlight" = "무료 TestFlight";
 "Get Started" = "시작하기";
 "Git from your phone" = "휴대폰에서 Git 사용";
 "Git writer model" = "Git 작성 모델";
@@ -157,7 +156,7 @@
 "Then scan the new QR code from the iPhone" = "그런 다음 iPhone 에서 새 QR 코드를 스캔하세요";
 "This Mac is running a different build than the current npm latest." = "이 Mac 은 현재 npm 최신 버전과 다른 빌드를 실행 중입니다.";
 "This chat is no longer available. Start a new chat instead?" = "이 채팅은 더 이상 사용할 수 없습니다. 대신 새 채팅을 시작할까요?";
-"This TestFlight build is free for internal testing. Subscriptions and in-app purchases are disabled." = "이 TestFlight 빌드는 내부 테스트용으로 무료입니다. 구독과 앱 내 구매는 비활성화되어 있습니다.";
+"This version is free. Subscriptions and in-app purchases are disabled." = "이 버전은 무료입니다. 구독과 앱 내 구매는 비활성화되어 있습니다.";
 "This nickname stays on this iPhone and appears anywhere this computer is shown." = "이 별명은 이 iPhone 에 저장되며 이 컴퓨터가 표시되는 모든 곳에 나타납니다.";
 "Traditional Chinese" = "번체 중국어";
 "Unlock Now" = "지금 잠금 해제";

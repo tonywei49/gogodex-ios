@@ -178,6 +178,7 @@ function startBridge({
     sessionId,
     relayUrl: relayBaseUrl,
     deviceState,
+    pairingTTLms: config.pairingTTLms,
     onTrustedPhoneUpdate(nextDeviceState) {
       deviceState = nextDeviceState;
       sendRelayRegistrationUpdate(nextDeviceState);

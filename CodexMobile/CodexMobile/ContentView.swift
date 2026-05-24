@@ -327,6 +327,15 @@ struct ContentView: View {
                         codex: codex
                     )
                 }
+            },
+            onReviewDemo: {
+                Task {
+                    isShowingManualScanner = false
+                    hasDismissedAutomaticScanner = false
+                    scannerCanReturnToOnboarding = false
+                    hasSeenOnboarding = true
+                    await viewModel.connectToAppReviewDemo(codex: codex)
+                }
             }
         )
     }
@@ -1338,6 +1347,19 @@ struct ContentView: View {
             await viewModel.stopAutoReconnectForManualScan(codex: codex)
 
             do {
+                if CodexAppReviewDemo.isManualCode(pendingCode) {
+                    isShowingManualPairingEntry = false
+                    manualPairingCode = ""
+                    withAnimation {
+                        hasSeenOnboarding = true
+                        isShowingManualScanner = false
+                        hasDismissedAutomaticScanner = true
+                        scannerCanReturnToOnboarding = false
+                    }
+                    await viewModel.connectToAppReviewDemo(codex: codex)
+                    return
+                }
+
                 let pairingPayload = try await codex.resolvePairingCode(pendingCode)
                 isShowingManualPairingEntry = false
                 manualPairingCode = ""

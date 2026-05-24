@@ -48,7 +48,6 @@
 "Forget Pair" = "ペアリングを解除";
 "Free" = "無料";
 "French" = "フランス語";
-"Free TestFlight" = "無料 TestFlight";
 "Get Started" = "始める";
 "Git from your phone" = "スマートフォンから Git";
 "Git writer model" = "Git 作成モデル";
@@ -157,7 +156,7 @@
 "Then scan the new QR code from the iPhone" = "その後、iPhone から新しい QR コードをスキャンします";
 "This Mac is running a different build than the current npm latest." = "この Mac は現在の npm 最新版とは異なるビルドを実行しています。";
 "This chat is no longer available. Start a new chat instead?" = "このチャットはもう利用できません。代わりに新しいチャットを開始しますか？";
-"This TestFlight build is free for internal testing. Subscriptions and in-app purchases are disabled." = "この TestFlight ビルドは内部テスト用に無料です。サブスクリプションとアプリ内購入は無効です。";
+"This version is free. Subscriptions and in-app purchases are disabled." = "このバージョンは無料です。サブスクリプションとアプリ内課金は無効です。";
 "This nickname stays on this iPhone and appears anywhere this computer is shown." = "このニックネームはこの iPhone に保存され、このコンピュータが表示される場所に表示されます。";
 "Traditional Chinese" = "繁体字中国語";
 "Unlock Now" = "今すぐ解除";

@@ -101,6 +101,7 @@ test("readBridgeConfig keeps safe defaults and explicit overrides", () => {
       REMODEX_CODEX_ENDPOINT: "ws://localhost:8080",
       REMODEX_REFRESH_ENABLED: "true",
       REMODEX_DESKTOP_IPC_SOCKET: "/tmp/remodex-ipc.sock",
+      GOGODEX_PAIRING_TTL_MS: "1209600000",
     },
     platform: "darwin",
     runtimeRoot: "/tmp/remodex-package",
@@ -138,6 +139,7 @@ test("readBridgeConfig keeps safe defaults and explicit overrides", () => {
   assert.equal(explicitOnConfig.refreshEnabled, true);
   assert.equal(explicitOnConfig.refreshMode, "live");
   assert.equal(explicitOnConfig.desktopIpcSocketPath, "/tmp/remodex-ipc.sock");
+  assert.equal(explicitOnConfig.pairingTTLms, 1209600000);
   assert.equal(explicitOffConfig.refreshEnabled, false);
   assert.equal(explicitOffConfig.keepMacAwakeEnabled, false);
 });
@@ -183,6 +185,7 @@ test("readBridgeConfig preserves saved daemon settings when restart has no env o
             refreshEnabled: true,
             refreshMode: "completion",
             keepMacAwakeEnabled: false,
+            pairingTTLms: 1209600000,
           });
         }
         throw new Error("unexpected read");
@@ -195,6 +198,7 @@ test("readBridgeConfig preserves saved daemon settings when restart has no env o
   assert.equal(config.refreshEnabled, true);
   assert.equal(config.refreshMode, "completion");
   assert.equal(config.keepMacAwakeEnabled, false);
+  assert.equal(config.pairingTTLms, 1209600000);
 });
 
 test("readBridgeConfig uses only the packaged relay default outside a source checkout", () => {
